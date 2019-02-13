@@ -35,6 +35,10 @@
               (lambda ()
                 (set-face-background 'mmm-default-submode-face nil)))
 
+
+    (spacemacs/set-leader-keys-for-major-mode 'vue-mode "a" #'vue-mode-edit-all-indirect)
+    (spacemacs/set-leader-keys-for-major-mode 'vue-mode "p" #'vue-mode-edit-indirect-at-point)
+
     (pcase vue-backend
       ('lsp (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp))
       ('dumb (progn (add-to-list 'spacemacs-jump-handlers-vue-mode 'dumb-jump-go)

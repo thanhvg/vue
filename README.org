@@ -81,11 +81,10 @@ If you want to use local =eslint= and =prettier= in your project, turn on node
 * Key bindings
 ** vue-mode
 
-| Key binding   | Description                                                                      |
-|---------------+----------------------------------------------------------------------------------|
-| ~<~           | inserts </> whenever it would start a new JSX node                               |
-| ~>~           | right before the slash in a self-closing tag automatically inserts a closing tag |
-| ~SPC m r r t~ | rename tag at point                                                              |
+| Key binding   | Description                     |
+|---------------+---------------------------------|
+| ~SPC a~       | vue-mode-edit-all-indirect      |
+| ~SPC p~       | vue-mode-edit-indirect-at-point |
 
 ** Formatting (prettier)
 
