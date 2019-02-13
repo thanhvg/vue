@@ -13,6 +13,7 @@
   - [[#vue-mode][vue-mode]]
   - [[#formatting-prettier][Formatting (prettier)]]
   - [[#auto-complete-and-documentation-dumb][Auto-complete and documentation (dumb)]]
+  - [[#lsp-keybindings][Lsp keybindings]]
 
 * Description
   Layer for Vue, for working with  =.vue= files.
@@ -98,3 +99,5 @@ If you want to use local =eslint= and =prettier= in your project, turn on node
 |---------------+------------------------------------------------------------------------------------------|
 | ~SPC m g g~   | jump to the definition of the thing under the cursor                                     |
 | ~SPC m g G~   | jump to definition for the given name                                                    |
+** Lsp keybindings
+   see lsp layer 
