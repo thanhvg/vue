@@ -38,6 +38,7 @@
 
     (spacemacs/set-leader-keys-for-major-mode 'vue-mode "a" #'vue-mode-edit-all-indirect)
     (spacemacs/set-leader-keys-for-major-mode 'vue-mode "p" #'vue-mode-edit-indirect-at-point)
+    (spacemacs/set-leader-keys-for-major-mode 'vue-mode "v" #'vue-mode-reparse)
 
     (pcase vue-backend
       ('lsp (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp))
