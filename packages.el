@@ -43,7 +43,8 @@
     (pcase vue-backend
       ('lsp (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp))
       ('dumb (progn (add-to-list 'spacemacs-jump-handlers-vue-mode 'dumb-jump-go)
-                    (add-to-list 'spacemacs-jump-handlers-vue-html-mode 'dumb-jump-go))))
+                    (add-to-list 'spacemacs-jump-handlers-vue-html-mode 'dumb-jump-go)
+                    (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-dumb-imenu))))
 
     ;; (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp)
     ;; (add-to-list 'spacemacs-jump-handlers-vue-mode
