@@ -40,19 +40,7 @@
     (spacemacs/set-leader-keys-for-major-mode 'vue-mode "p" #'vue-mode-edit-indirect-at-point)
     (spacemacs/set-leader-keys-for-major-mode 'vue-mode "v" #'vue-mode-reparse)
 
-    (pcase vue-backend
-      ('lsp (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp))
-      ('dumb (progn (add-to-list 'spacemacs-jump-handlers-vue-mode 'dumb-jump-go)
-                    (add-to-list 'spacemacs-jump-handlers-vue-html-mode 'dumb-jump-go)
-                    (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-dumb-imenu))))
-
-    ;; (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp)
-    ;; (add-to-list 'spacemacs-jump-handlers-vue-mode
-    ;;              'dumb-jump-go)
-
-    ;; (add-to-list 'spacemacs-jump-handlers-vue-html-mode
-    ;;              'dumb-jump-go)
-    ))
+    (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-backend)))
 
 (defun vue/post-init-add-node-modules-path ()
   (spacemacs/add-to-hooks #'add-node-modules-path '(css-mode-hook
@@ -61,9 +49,7 @@
                                                     js-mode-hook)))
 
 (defun vue/post-init-company ()
-  (pcase vue-backend
-    ('dumb (spacemacs|add-company-backends :backends company-capf :modes vue-mode))
-    ('lsp (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-lsp-company))))
+  (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-company))
 
 (defun vue/post-init-emmet-mode ()
   ;; (add-hook 'vue-html-mode 'emmet-mode))

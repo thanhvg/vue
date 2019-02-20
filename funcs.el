@@ -9,7 +9,22 @@
 ;;
 ;;; License: GPLv3
 
-;; LSP
+
+;; backend
+(defun spacemacs//vue-setup-backend ()
+  "Conditionally setup react backend."
+  (pcase vue-backend
+    (`dumb (spacemacs//vue-setup-dumb))
+    (`lsp (spacemacs//vue-setup-lsp))))
+
+(defun spacemacs//vue-setup-company ()
+  "Conditionally setup company based on backend."
+  (pcase vue-backend
+    (`dumb (spacemacs//vue-setup-dumb-company))
+    (`lsp (spacemacs//vue-setup-lsp-company))))
+
+
+;; lsp
 (defun spacemacs//vue-setup-lsp ()
   "Setup lsp backend."
   (if (configuration-layer/layer-used-p 'lsp)
@@ -33,6 +48,33 @@
     (message "`lsp' layer is not installed, please add `lsp' layer to your dotfile.")))
 
 
+;; dumb
+
+(defun spacemacs//vue-setup-dumb-imenu () 
+  (setq imenu-generic-expression '(("html" "^<template>$" 0)
+                                   ("js" "^<script>$" 0)
+                                   ("js" "^\\s-*\\(data\\).*()\\s-?{" 1)
+                                   ("js" "^\\s-*\\(mounted\\).*()\\s-?{" 1)
+                                   ("js" "^\\s-*\\(beforeMount\\).*()\\s-?{" 1)
+                                   ("js" "^\\s-*\\(beforeDestroy\\).*()\\s-?{" 1)
+                                   ("js" "^\\s-*\\(created\\).*()\\s-?{" 1)
+                                   ("js" "^\\s-*\\(computed\\):\\s-?{" 1)
+                                   ("js" "^\\s-*\\(watched\\):\\s-?{" 1)
+                                   ("js" "^\\s-*\\(methods\\):\\s-?{" 1)
+                                   ("js" "^\\s-*\\(props\\):\\s-?{" 1)
+                                   ("css" "^<css>$" 0))
+        imenu-create-index-function #'imenu-default-create-index-function))
+
+(defun spacemacs//vue-setup-dumb ()
+  (add-to-list 'spacemacs-jump-handlers-vue-mode 'dumb-jump-go)
+  (add-to-list 'spacemacs-jump-handlers-vue-html-mode 'dumb-jump-go)
+  (spacemacs//vue-setup-dumb-imenu))
+
+(defun spacemacs//vue-setup-dumb-company ()
+  (spacemacs|add-company-backends :backends company-capf :modes vue-mode)
+  (company-mode))
+
+
 ;; Emmet
 (defun spacemacs//vue-turn-on-emmet ()
   (emmet-mode 1)
@@ -50,20 +92,3 @@
   (flycheck-select-checker 'javascript-eslint))
 
 
-(defun spacemacs//vue-setup-dumb-company ()
-  (spacemacs|add-company-backends :backends company-capf :modes vue-mode))
-
-(defun spacemacs//vue-setup-dumb-imenu () 
-  (setq imenu-generic-expression '(("html" "^<template>$" 0)
-                                   ("js" "^<script>$" 0)
-                                   ("js" "^\\s-*\\(data\\).*()\\s-?{" 1)
-                                   ("js" "^\\s-*\\(mounted\\).*()\\s-?{" 1)
-                                   ("js" "^\\s-*\\(beforeMount\\).*()\\s-?{" 1)
-                                   ("js" "^\\s-*\\(beforeDestroy\\).*()\\s-?{" 1)
-                                   ("js" "^\\s-*\\(created\\).*()\\s-?{" 1)
-                                   ("js" "^\\s-*\\(computed\\):\\s-?{" 1)
-                                   ("js" "^\\s-*\\(watched\\):\\s-?{" 1)
-                                   ("js" "^\\s-*\\(methods\\):\\s-?{" 1)
-                                   ("js" "^\\s-*\\(props\\):\\s-?{" 1)
-                                   ("css" "^<css>$" 0))
-        imenu-create-index-function #'imenu-default-create-index-function))
