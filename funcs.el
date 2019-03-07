@@ -28,10 +28,14 @@
 (defun spacemacs//vue-setup-lsp ()
   "Setup lsp backend."
   (if (configuration-layer/layer-used-p 'lsp)
-      (lsp)
-    (message "`lsp' layer is not installed, please add `lsp' layer to your dotfile."))
-  ;; because lsp will override other linters
-  (flycheck-select-checker 'javascript-eslint))
+      (progn
+        ;; error checking from lsp langserver sucks, turn it off
+        ;; so eslint won't be overriden
+        (setq-local lsp-prefer-flymake :none)
+        (lsp))
+    ;; (flycheck-select-checker 'javascript-eslint))
+    (message (concat "`lsp' layer is not installed, "
+                     "please add `lsp' layer to your dotfile."))))
 
 (defun spacemacs//vue-setup-lsp-company ()
   "Setup lsp auto-completion."
