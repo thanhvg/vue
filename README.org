@@ -40,16 +40,15 @@ variable =vue-backend=:
 (vue :variables vue-backend 'lsp)
 #+END_SRC
 
-To use the on-the-fly syntax checking, install =eslint= with babel and react
-support:
+To use the on-the-fly syntax checking, install =eslint=:
 
 #+BEGIN_SRC sh
   $ npm install -g eslint
 #+END_SRC
 
-If your project do not use a custom =.eslintrc= file 
+Check eslint official doc for setting rules
 
-To use automatic code formatting you need to install ~prettier~ with:
+To use automatic code formatting you need to install =prettier= with:
 
 #+BEGIN_SRC sh
   $ npm install -g prettier
