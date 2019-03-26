@@ -16,7 +16,7 @@
   - [[#lsp-keybindings][Lsp keybindings]]
 
 * Description
-  Layer for Vue, for working with  =.vue= files.
+Layer for Vue, for working with  =.vue= files.
 
 ** Features:
 - on-the-fly syntax checking with =eslint=
@@ -63,20 +63,34 @@ If you want to use local =eslint= and =prettier= in your project, turn on node
 
 * Backends 
 ** dumb
-   dumb backend is light weight and fast. =dumb-jump= is used to handled go to
-   definition (=gd= vim keybinding). Because of the template nature of vue, it
-   works very well. Company backend is set to =capf= which is very eager in
-   suggestions. =eslint= is used for linting.
+dumb backend is light weight and fast. =dumb-jump= is used to handled go to
+definition (=gd= vim keybinding). Because of the template nature of vue, it
+works very well. Company backend is set to =capf= which is very eager in
+suggestions. =eslint= is used for linting.
+   
+at the moment =vue-html-mode= doesn't define its own syntax table so you may
+encounter some glitches but it's very rare as described here:
+https://github.com/AdamNiederer/vue-html-mode/issues/10l Add this to your
+dotspacemacs/user-config as a workaround:
+
+#+begin_src elisp
+  (defun my/change-vue-html-mode-syntax-table ()
+    (modify-syntax-entry ?: ".")
+    (modify-syntax-entry ?' ".")
+    (modify-syntax-entry ?. "."))
+  (add-hook 'vue-html-mode-hook #'my/change-vue-html-mode-syntax-table)
+#+end_src
+
 ** lsp
-   Vue language server needed to be installed 
+Vue language server needed to be installed 
    
-   #+BEGIN_SRC sh
+#+BEGIN_SRC sh
    $ npm install -g vue-language-server
- #+END_SRC
+#+END_SRC
    
-   This backend provides all the fancy features like: jump to definition,
-   references, type inference However, =eslint= is explicitly selected for
-   linting because it works better than =lsp=
+This backend provides all the fancy features like: jump to definition,
+references, type inference... However, =eslint= is explicitly selected for linting
+because it works better than =lsp=
 
 * Key bindings
 ** vue-mode
@@ -100,4 +114,4 @@ If you want to use local =eslint= and =prettier= in your project, turn on node
 | ~SPC m g g~   | jump to the definition of the thing under the cursor                                     |
 | ~SPC m g G~   | jump to definition for the given name                                                    |
 ** Lsp keybindings
-   see lsp layer 
+see lsp layer 
