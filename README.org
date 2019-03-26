@@ -70,7 +70,7 @@ suggestions. =eslint= is used for linting.
    
 at the moment =vue-html-mode= doesn't define its own syntax table so you may
 encounter some glitches but it's very rare as described here:
-https://github.com/AdamNiederer/vue-html-mode/issues/10l Add this to your
+https://github.com/AdamNiederer/vue-html-mode/issues/10 Add this to your
 dotspacemacs/user-config as a workaround:
 
 #+begin_src elisp
