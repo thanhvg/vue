@@ -75,7 +75,7 @@
   (spacemacs//vue-setup-dumb-imenu))
 
 (defun spacemacs//vue-setup-dumb-company ()
-  (spacemacs|add-company-backends :backends company-capf
+  (spacemacs|add-company-backends :backends (company-capf company-web-html company-css)
                                   :modes vue-mode
                                   :variables company-minimum-prefix-length 1)
   (company-mode))
