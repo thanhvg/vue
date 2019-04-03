@@ -63,7 +63,7 @@
                                    ("js" "^\\s-*\\(beforeDestroy\\).*()\\s-?{" 1)
                                    ("js" "^\\s-*\\(created\\).*()\\s-?{" 1)
                                    ("js" "^\\s-*\\(computed\\):\\s-?{" 1)
-                                   ("js" "^\\s-*\\(watched\\):\\s-?{" 1)
+                                   ("js" "^\\s-*\\(watch\\):\\s-?{" 1)
                                    ("js" "^\\s-*\\(methods\\):\\s-?{" 1)
                                    ("js" "^\\s-*\\(props\\):\\s-?{" 1)
                                    ("css" "^<css>$" 0))
@@ -75,7 +75,7 @@
   (spacemacs//vue-setup-dumb-imenu))
 
 (defun spacemacs//vue-setup-dumb-company ()
-  (spacemacs|add-company-backends :backends (company-capf company-web-html company-css)
+  (spacemacs|add-company-backends :backends (company-capf company-css)
                                   :modes vue-mode
                                   :variables company-minimum-prefix-length 1)
   (company-mode))
