@@ -15,6 +15,6 @@
 
 (spacemacs|define-jump-handlers vue-mode)
 (spacemacs|define-jump-handlers vue-html-mode)
-(spacemacs|define-jump-handlers js-mode)
+;; (spacemacs|define-jump-handlers js-mode)
 
 ;; XXX css-mode also needed
