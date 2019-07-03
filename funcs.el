@@ -12,7 +12,7 @@
 
 ;; backend
 (defun spacemacs//vue-setup-backend ()
-  "Conditionally setup react backend."
+  "Conditionally setup vue backend."
   (pcase vue-backend
     (`dumb (spacemacs//vue-setup-dumb))
     (`lsp (spacemacs//vue-setup-lsp))))
@@ -47,8 +47,7 @@
           :variables company-minimum-prefix-length 2
           :append-hooks nil
           :call-hooks t)
-        (company-mode)
-        (fix-lsp-company-prefix))
+        (company-mode))
     (message "`lsp' layer is not installed, please add `lsp' layer to your dotfile.")))
 
 
