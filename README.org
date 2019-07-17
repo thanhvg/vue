@@ -3,6 +3,11 @@
 [[file:img/vue.png]]
 
 * Table of Contents                     :TOC_4_gh:noexport:
+- [[#news][News]]
+- [[#todos][TODOs]]
+  - [[#matchit-wont-work-on-html][matchit won't work on html]]
+  - [[#yasnippet-wont-work-on-js][yasnippet won't work on js]]
+  - [[#company-wont-work][company won't work]]
 - [[#description][Description]]
   - [[#features][Features:]]
 - [[#install][Install]]
@@ -15,6 +20,14 @@
   - [[#auto-complete-and-documentation-dumb][Auto-complete and documentation (dumb)]]
   - [[#lsp-keybindings][Lsp keybindings]]
 
+* News
+  dump =vue-mode= to use web-mode
+* TODOs 
+** TODO matchit won't work on html
+** TODO yasnippet won't work on js
+** TODO company won't work
+   dumb mode
+   
 * Description
 Layer for Vue, for working with  =.vue= files.
 

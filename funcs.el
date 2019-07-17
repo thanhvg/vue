@@ -70,7 +70,6 @@
 
 (defun spacemacs//vue-setup-dumb ()
   (add-to-list 'spacemacs-jump-handlers-vue-mode 'dumb-jump-go)
-  (add-to-list 'spacemacs-jump-handlers-vue-html-mode 'dumb-jump-go)
   (spacemacs//vue-setup-dumb-imenu))
 
 (defun spacemacs//vue-setup-dumb-company ()
@@ -83,8 +82,8 @@
 
 ;; Emmet
 (defun spacemacs//vue-turn-on-emmet ()
-  (emmet-mode 1)
-  (setq-local emmet-indent-after-insert nil))
+  (emmet-mode 1))
+  ;; (setq-local emmet-indent-after-insert nil))
 
 (defun spacemacs//vue-turn-off-emmet ()
   (emmet-mode -1))
