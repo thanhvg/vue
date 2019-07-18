@@ -4,19 +4,12 @@
 
 * Table of Contents                     :TOC_4_gh:noexport:
 - [[#news][News]]
-- [[#todos][TODOs]]
-  - [[#matchit-wont-work-on-html][matchit won't work on html]]
-  - [[#yasnippet-wont-work-on-js][yasnippet won't work on js]]
-  - [[#company-wont-work][company won't work]]
-  - [[#lsp][lsp]]
-  - [[#keybindings][keybindings]]
-  - [[#docs-update][docs update]]
 - [[#description][Description]]
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#backends][Backends]]
   - [[#dumb][dumb]]
-  - [[#lsp-1][lsp]]
+  - [[#lsp][lsp]]
 - [[#optional-configuration][Optional Configuration]]
 - [[#key-bindings][Key Bindings]]
   - [[#web-mode][web-mode]]
@@ -30,16 +23,6 @@
   - Wholesome features from =web-mode=, especially on template part
   - Better performance
   - If you need the old one use branch ~v1~
-* TODOs 
-** DONE matchit won't work on html
-** DONE yasnippet won't work on js
-   half working
-** DONE company won't work
-   dumb mode
-** DONE lsp
-** DONE keybindings
-   lsp reserved: b, F, G, g, h, r T
-** docs update
 * Description
 Layer for Vue, for working with  =.vue= files.
 
