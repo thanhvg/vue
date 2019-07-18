@@ -24,6 +24,16 @@
 (defun vue/post-init-web-mode ()
   (define-derived-mode vue-mode web-mode "vuejs")
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
+  ;; (add-hook 'web-mode-before-auto-complete-hooks
+  ;;           '(lambda ()
+  ;;              (let ((web-mode-cur-language
+  ;;                     (web-mode-language-at-pos)))
+  ;;                (if (string= web-mode-cur-language "javascript")
+  ;;                    (yas-activate-extra-mode 'js2-mode)
+  ;;                  (yas-deactivate-extra-mode 'js2-mode))
+  ;;                (if (string= web-mode-cur-language "css")
+  ;;                    (setq emmet-use-css-transform t)
+  ;;                  (setq emmet-use-css-transform nil)))))
   (spacemacs/set-leader-keys-for-major-mode 'vue-mode "a" #'helm-google-suggest)
   (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-backend))
 
@@ -34,9 +44,10 @@
   (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-company))
 
 (defun vue/post-init-emmet-mode ()
-  (add-hook 'vue-mode-hook #'spacemacs//vue-turn-on-emmet))
+  (add-hook 'vue-mode-hook #'emmet-mode))
 
 (defun vue/post-init-evil-matchit ()
+  (evilmi-load-plugin-rules '(vue-mode) '(template simple html))
   (add-hook 'vue-mode-hook 'turn-on-evil-matchit-mode))
 
 (defun vue/post-init-flycheck ()
@@ -52,6 +63,5 @@
       (add-hook 'vue-mode-hook #'smartparens-strict-mode)
     (add-hook 'vue-mode-hook #'smartparens-mode)))
 
-
 (defun vue/post-init-yasnippet ()
-  (add-hook 'vue-mode-hook #'spacemacs/load-yasnippet))
+  (add-hook 'vue-mode-hook #'spacemacs//vue-setup-yasnippet))

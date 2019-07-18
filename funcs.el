@@ -73,10 +73,9 @@
   (spacemacs//vue-setup-dumb-imenu))
 
 (defun spacemacs//vue-setup-dumb-company ()
-  (spacemacs|add-company-backends :backends (company-css company-files company-dabbrev)
-  ;; (spacemacs|add-company-backends :backends company-capf
+  (spacemacs|add-company-backends :backends (company-web-html company-css company-files company-dabbrev)
                                   :modes vue-mode
-                                  :variables company-minimum-prefix-length 1)
+                                  :variables company-minimum-prefix-length 2)
   (company-mode))
 
 
@@ -90,8 +89,9 @@
 
 ;; Others
 
-;; (defun spacemacs//vue-setup-yasnippet ()
-;;   (yas-activate-extra-mode 'js-mode))
+(defun spacemacs//vue-setup-yasnippet ()
+  (spacemacs/load-yasnippet)
+  (yas-activate-extra-mode 'js-mode))
 
 ;; (defun spacemacs//vue-setup-eslint ()
 ;;   (flycheck-select-checker 'javascript-eslint))

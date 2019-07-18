@@ -8,12 +8,14 @@
   - [[#matchit-wont-work-on-html][matchit won't work on html]]
   - [[#yasnippet-wont-work-on-js][yasnippet won't work on js]]
   - [[#company-wont-work][company won't work]]
+  - [[#lsp][lsp]]
+  - [[#keybindings][keybindings]]
 - [[#description][Description]]
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#backends][Backends]]
   - [[#dumb][dumb]]
-  - [[#lsp][lsp]]
+  - [[#lsp-1][lsp]]
 - [[#key-bindings][Key bindings]]
   - [[#vue-mode][vue-mode]]
   - [[#formatting-prettier][Formatting (prettier)]]
@@ -23,11 +25,15 @@
 * News
   dump =vue-mode= to use web-mode
 * TODOs 
-** TODO matchit won't work on html
+** DONE matchit won't work on html
+   CLOSED: [2019-07-17 Wed 21:40]
 ** TODO yasnippet won't work on js
-** TODO company won't work
+   half working
+** DONE company won't work
+   CLOSED: [2019-07-17 Wed 21:14]
    dumb mode
-   
+** lsp
+** keybindings
 * Description
 Layer for Vue, for working with  =.vue= files.
 
