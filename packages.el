@@ -22,19 +22,10 @@
     yasnippet))
 
 (defun vue/post-init-web-mode ()
-  (define-derived-mode vue-mode web-mode "vuejs")
+  (define-derived-mode vue-mode web-mode "Vue")
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
-  ;; (add-hook 'web-mode-before-auto-complete-hooks
-  ;;           '(lambda ()
-  ;;              (let ((web-mode-cur-language
-  ;;                     (web-mode-language-at-pos)))
-  ;;                (if (string= web-mode-cur-language "javascript")
-  ;;                    (yas-activate-extra-mode 'js2-mode)
-  ;;                  (yas-deactivate-extra-mode 'js2-mode))
-  ;;                (if (string= web-mode-cur-language "css")
-  ;;                    (setq emmet-use-css-transform t)
-  ;;                  (setq emmet-use-css-transform nil)))))
-  (spacemacs/set-leader-keys-for-major-mode 'vue-mode "a" #'helm-google-suggest)
+  (spacemacs/add-to-hook 'vue-mode-hook '(spacemacs//vue-setup-editor-style
+                                          spacemacs//vue-setup-keybindings))
   (add-hook 'vue-mode-local-vars-hook #'spacemacs//vue-setup-backend))
 
 (defun vue/post-init-add-node-modules-path ()

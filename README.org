@@ -10,30 +10,36 @@
   - [[#company-wont-work][company won't work]]
   - [[#lsp][lsp]]
   - [[#keybindings][keybindings]]
+  - [[#docs-update][docs update]]
 - [[#description][Description]]
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#backends][Backends]]
   - [[#dumb][dumb]]
   - [[#lsp-1][lsp]]
-- [[#key-bindings][Key bindings]]
-  - [[#vue-mode][vue-mode]]
+- [[#optional-configuration][Optional Configuration]]
+- [[#key-bindings][Key Bindings]]
+  - [[#web-mode][web-mode]]
   - [[#formatting-prettier][Formatting (prettier)]]
   - [[#auto-complete-and-documentation-dumb][Auto-complete and documentation (dumb)]]
   - [[#lsp-keybindings][Lsp keybindings]]
 
 * News
-  dump =vue-mode= to use web-mode
+  - Dump =vue-mode= to use =web-mode=. This layer creates a derived mode on the
+    fly out of web-mode to handle vue file.
+  - Wholesome features from =web-mode=, especially on template part
+  - Better performance
+  - If you need the old one use branch ~v1~
 * TODOs 
 ** DONE matchit won't work on html
-   CLOSED: [2019-07-17 Wed 21:40]
-** TODO yasnippet won't work on js
+** DONE yasnippet won't work on js
    half working
 ** DONE company won't work
-   CLOSED: [2019-07-17 Wed 21:14]
    dumb mode
-** lsp
-** keybindings
+** DONE lsp
+** DONE keybindings
+   lsp reserved: b, F, G, g, h, r T
+** docs update
 * Description
 Layer for Vue, for working with  =.vue= files.
 
@@ -55,50 +61,40 @@ Vue layer uses the backend defined in variable =vue-backend=. Options are =dumb=
 and =lsp=. Default is =dumb= backend. To choose a default backend set the layer
 variable =vue-backend=:
 
-#+BEGIN_SRC elisp
+#+begin_src elisp
 (vue :variables vue-backend 'lsp)
-#+END_SRC
+#+end_src
 
 To use the on-the-fly syntax checking, install =eslint=:
 
-#+BEGIN_SRC sh
+#+begin_src sh
   $ npm install -g eslint
-#+END_SRC
+#+end_src
 
 Check eslint official doc for setting rules
 
 To use automatic code formatting you need to install =prettier= with:
 
-#+BEGIN_SRC sh
+#+begin_src sh
   $ npm install -g prettier
-#+END_SRC
+#+end_src
 
 If you want to use local =eslint= and =prettier= in your project, turn on node
   layer =dotspacemacs-configuration-layers= function:
 
-#+BEGIN_SRC elisp
+#+begin_src elisp
      (node :variable node-add-modules-path)
-#+END_SRC
+#+end_src
 
 * Backends 
 ** dumb
 dumb backend is light weight and fast. =dumb-jump= is used to handled go to
-definition (=gd= vim keybinding). Because of the template nature of vue, it
-works very well. Company backend is set to =capf= which is very eager in
-suggestions. =eslint= is used for linting.
-   
-at the moment =vue-html-mode= doesn't define its own syntax table so you may
-encounter some glitches but it's very rare as described here:
-https://github.com/AdamNiederer/vue-html-mode/issues/10 Add this to your
-dotspacemacs/user-config as a workaround:
+definition (=gd= vim keybinding). Because of the template nature of Vue, it
+works very well. 
 
-#+begin_src elisp
-  (defun my/change-vue-html-mode-syntax-table ()
-    (modify-syntax-entry ?: ".")
-    (modify-syntax-entry ?' ".")
-    (modify-syntax-entry ?. "."))
-  (add-hook 'vue-html-mode-hook #'my/change-vue-html-mode-syntax-table)
-#+end_src
+Company backend is set to be very eager in suggestions. 
+
+=eslint= is used for linting.
 
 ** lsp
 Vue language server needed to be installed 
@@ -108,17 +104,65 @@ Vue language server needed to be installed
 #+END_SRC
    
 This backend provides all the fancy features like: jump to definition,
-references, type inference... However, =eslint= is explicitly selected for linting
-because it works better than =lsp=
+references, type inference... However, =eslint= is explicitly selected for
+linting because it works better than =lsp= linter.
 
-* Key bindings
-** vue-mode
+* Optional Configuration
+~web-mode-script-padding~ is set to 0, so indent is zero at root level inside
+~script~ tag
 
-| Key binding | Description                     |
-|-------------+---------------------------------|
-| ~SPC a~     | vue-mode-edit-all-indirect      |
-| ~SPC p~     | vue-mode-edit-indirect-at-point |
-| ~SPC v~     | vue-mode-reparse                |
+Same as =react= layer, you may refer to the =web-mode= configuration for fine
+tuning the indenting behaviour.
+
+For example, if you wan't two space indentation, put this in your
+=dotspacemacs/user-config=
+
+#+begin_src emacs-lisp
+  (setq-default
+   ;; web-mode
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
+#+end_src
+
+* Key Bindings
+** web-mode
+  Free stuff from `html' layer, with minor change to avoid conflict with =lsp= layer
+  
+| Key binding | Description                                               |
+|-------------+-----------------------------------------------------------|
+| ~SPC m E h~ | highlight DOM errors                                      |
+| ~SPC m e b~ | go to the beginning of current element                    |
+| ~SPC m e c~ | go to the first child element                             |
+| ~SPC m e p~ | go to the parent element                                  |
+| ~SPC m e s~ | go to next sibling                                        |
+| ~SPC m h p~ | show xpath of the current element                         |
+| ~SPC m r c~ | clone the current element                                 |
+| ~SPC m r d~ | delete the current element (does not delete the children) |
+| ~SPC m r n~ | rename current element                                    |
+| ~SPC m r w~ | wrap current element                                      |
+| ~SPC m z~   | fold/unfold current element                               |
+| ~%~         | evil-matchit key binding to jump to closing tag           |
+
+A transient-state is also defined, start it with ~SPC m .~ or ~, .~
+
+| Key binding | Description                                                    |
+|-------------+----------------------------------------------------------------|
+| ~?~         | Toggle full help                                               |
+| ~c~         | clone current element                                          |
+| ~d~         | delete (vanish) current element (does not delete the children) |
+| ~D~         | delete current element and children                            |
+| ~j~         | next element                                                   |
+| ~J~ / ~gj~  | next sibling element                                           |
+| ~h~         | parent element                                                 |
+| ~k~         | previous element                                               |
+| ~K~ / ~gk~  | previous sibling element                                       |
+| ~l~         | first child element                                            |
+| ~p~         | show xpath of current element                                  |
+| ~q~         | leave the transient-state                                      |
+| ~r~         | rename current element                                         |
+| ~w~         | wrap current element                                           |
 
 ** Formatting (prettier)
 
@@ -128,9 +172,9 @@ because it works better than =lsp=
 
 ** Auto-complete and documentation (dumb)
 
-| Key binding   | Description                                                                              |
-|---------------+------------------------------------------------------------------------------------------|
-| ~SPC m g g~   | jump to the definition of the thing under the cursor                                     |
-| ~SPC m g G~   | jump to definition for the given name                                                    |
+| Key binding | Description                                          |
+|-------------+------------------------------------------------------|
+| ~SPC m g~   | jump to the definition of the thing under the cursor |
+| ~SPC m G~   | jump to definition for the given name                |
 ** Lsp keybindings
-see lsp layer 
+ See =lsp= layer 
