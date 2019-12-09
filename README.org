@@ -1,4 +1,4 @@
-#+TITLE: Vue layer
+#+TITLE: Vue layer. Updated 2019-12-08: this layer has been integrated in to Spacemacs develop branch. 
 
 [[file:img/vue.png]]
 
