@@ -1,5 +1,10 @@
 #+TITLE: Vue layer. Updated 2019-12-08: this layer has been integrated in to Spacemacs develop branch. 
 
+Future development with be made there. You don't have to use this repo anymore.
+
+Check out this link:
+https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Bframeworks/vue
+
 [[file:img/vue.png]]
 
 * Table of Contents                     :TOC_4_gh:noexport:
